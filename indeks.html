@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Simulasi Geolocation API</title>
+</head>
+<body>
+
+<h2>Simulasi Permintaan Lokasi</h2>
+<button onclick="mintaLokasi()">Minta Izin Lokasi</button>
+
+<p id="hasil"></p>
+
+<script>
+function mintaLokasi() {
+  if (!navigator.geolocation) {
+    hasil.textContent = "Browser tidak mendukung Geolocation.";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    function(pos) {
+      document.getElementById("hasil").innerHTML =
+        "Latitude: " + pos.coords.latitude +
+        "<br>Longitude: " + pos.coords.longitude;
+    },
+    function(err) {
+      document.getElementById("hasil").textContent =
+        "Pengguna menolak izin atau terjadi kesalahan.";
+    }
+  );
+}
+</script>
+
+</body>
+</html>
